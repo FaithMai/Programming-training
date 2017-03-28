@@ -1,1 +1,1 @@
-My online judge training.
+ My online judge training.
