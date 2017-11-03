@@ -20,7 +20,7 @@ class Minesweeping {
         for (int i = 0; i < range; ++i)  // 用数字代替矩阵中的位置，建立一维数字和二维位置的对应关系
             matrix[i] = i;  // 比如：(0,0)->0 (0,1)->1 (0,2)->3 (0,3)->4,(1,0)->5 ...
         for (int i = 0; i < numberOfMine; ++i){
-            int index = (int)(random()*range);  // 产生数组总长度（总长度会逐渐减少）的随机数,（因为是左开右闭的区间，所以获得的直接就是数组对应的下标）
+            int index = (int)(random()*range);  // 产生数组总长度（总长度会逐渐减少）的随机数,（因为是左闭右开的区间，所以获得的直接就是数组对应的下标）
             --range;
             System.out.print("x" + (i+1) + "=" + matrix[index]/matrixSize + ",");  // 将一维映射换成二维坐标
             System.out.println("y" + (i+1) + "=" + matrix[index]%matrixSize);
