@@ -8,11 +8,13 @@ typedef struct tree{
 	Type data;
 	struct tree *l, *r;
 }BTree;
-void build(BTree *tree, vector<int> a, vector<int> b){
+void build(BTree* &tree, vector<int> a, vector<int> b){
 	if(a.size()==0)
 		return;
 	int p = 0;
 	vector<int> al, ar, bl, br;
+	tree = (BTree*)malloc(sizeof(BTree));
+	tree->l = tree->r = NULL;
 	// 找到根节点
 	for(int i = 0; i < a.size(); ++i){
 		if(b[i] == a[a.size()-1])
@@ -28,16 +30,8 @@ void build(BTree *tree, vector<int> a, vector<int> b){
 		br.push_back(b[i]);
 	tree->data = b[p];
 	// 递归建树
-	if(al.size()!=0){
-        tree->l = (BTree*)malloc(sizeof(BTree));
-        tree->l->l = tree->l->r = NULL;
-        build(tree->l, al, bl);
-	}
-    if(ar.size()!=0){
-        tree->r = (BTree*)malloc(sizeof(BTree));
-        tree->r->l = tree->r->r = NULL;
-        build(tree->r, ar, br);
-	}
+    build(tree->l, al, bl);
+    build(tree->r, ar, br);
 
 
 }
@@ -65,8 +59,7 @@ int main()
 {
 	int n, x;
 	vector<int> a, b;
-	BTree *tree = (BTree*)malloc(sizeof(BTree));
-	tree->l = tree->r = NULL;
+	BTree *tree = NULL;
 	scanf("%d",&n);
 	for(int i = 0; i < n; ++i){
 		scanf("%d",&x);
